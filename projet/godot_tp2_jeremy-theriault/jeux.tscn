@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ra4j73r4y82j"]
+[gd_scene load_steps=4 format=3 uid="uid://ra4j73r4y82j"]
 
 [ext_resource type="PackedScene" uid="uid://boyw2vsaav3ly" path="res://player.tscn" id="1_nlqxw"]
 [ext_resource type="PackedScene" uid="uid://roo2lkwvidnr" path="res://map.tscn" id="2_gds4p"]
+[ext_resource type="PackedScene" uid="uid://cxf5rbgd6qk0g" path="res://potion.tscn" id="3_vq3ya"]
 
 [node name="jeux" type="Node2D"]
 
@@ -10,3 +11,6 @@
 [node name="player" parent="." instance=ExtResource("1_nlqxw")]
 position = Vector2(21, 12)
 scale = Vector2(0.675, 0.675)
+
+[node name="Potion" parent="." instance=ExtResource("3_vq3ya")]
+position = Vector2(341, 33)

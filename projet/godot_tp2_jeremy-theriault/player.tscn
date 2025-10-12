@@ -454,7 +454,7 @@ height = 72.0
 
 [node name="player" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 floor_max_angle = 0.872665
 script = ExtResource("1_n7ghd")
 
@@ -473,7 +473,7 @@ position = Vector2(6, 17)
 shape = SubResource("CapsuleShape2D_n7ghd")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-offset = Vector2(0, -149.6)
+offset = Vector2(0, -78.685)
 zoom = Vector2(1.595, 1.595)
 
 [node name="RayCastLeft" type="RayCast2D" parent="CharacterBody2D"]
