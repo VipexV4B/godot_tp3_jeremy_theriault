@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var animation = $sprite_idle
 @onready var ray_left = $RayCastLeft
 @onready var ray_right = $RayCastRight
+@onready var jump_sound = $jump
 
 # --- Variables modifiables par le jeu ---
 @export var speed = 200.0          # vitesse normale (modifiable par un objet)
@@ -44,7 +45,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_force
+			jump_sound.play()
+			jump_sound.seek(1.0)
 		elif (hit_left or hit_right) and not is_on_floor():
+			jump_sound.play()
+			jump_sound.seek(1.0)
 			velocity.y = wall_jump_force
 			if hit_right:
 				velocity.x = -wall_pushback

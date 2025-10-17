@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxf5rbgd6qk0g"]
+[gd_scene load_steps=5 format=3 uid="uid://cxf5rbgd6qk0g"]
 
 [ext_resource type="Script" uid="uid://c5grwl3b538mi" path="res://potion.gd" id="1_bcips"]
 [ext_resource type="Texture2D" uid="uid://n8a63hyov02g" path="res://potion.png" id="2_174ht"]
+[ext_resource type="AudioStream" uid="uid://cdjs2vousn07d" path="res://assets/audio/power_up.mp3" id="3_8parx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_174ht"]
 size = Vector2(15, 21)
@@ -16,3 +17,8 @@ shape = SubResource("RectangleShape2D_174ht")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_174ht")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8parx")
+volume_db = -2.785
+pitch_scale = 0.43

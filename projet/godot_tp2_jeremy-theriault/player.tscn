@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://boyw2vsaav3ly"]
+[gd_scene load_steps=68 format=3 uid="uid://boyw2vsaav3ly"]
 
 [ext_resource type="Script" uid="uid://sf0hx8thy0m5" path="res://player.gd" id="1_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://7mlxx3jq4jl3" path="res://assets/sprites/Samurai/Attack_1.png" id="1_onrkg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://citutw8r2ws1" path="res://assets/sprites/Samurai/Walk.png" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dw4mfpllj11ty" path="res://assets/sprites/Samurai/Dead.png" id="5_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://dd02svqhm1g41" path="res://assets/sprites/Samurai/Protection.png" id="8_b26j0"]
+[ext_resource type="AudioStream" uid="uid://2sql57oy0vps" path="res://assets/audio/jump.mp3" id="11_nvl01"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
 atlas = ExtResource("3_sweqy")
@@ -483,3 +484,8 @@ target_position = Vector2(-16, 0)
 [node name="RayCastRight" type="RayCast2D" parent="CharacterBody2D"]
 position = Vector2(11, 0)
 target_position = Vector2(16, 0)
+
+[node name="jump" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("11_nvl01")
+volume_db = 4.028
+pitch_scale = 0.68
