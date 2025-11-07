@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://bqa675e0x6qyb"]
+[gd_scene load_steps=5 format=3 uid="uid://bqa675e0x6qyb"]
+
+[ext_resource type="PackedScene" uid="uid://boyw2vsaav3ly" path="res://player.tscn" id="1_xq47y"]
+[ext_resource type="PackedScene" uid="uid://dy734se5qq2hs" path="res://level_2.tscn" id="2_pfgwc"]
+[ext_resource type="PackedScene" uid="uid://c6cbjltrdia6h" path="res://porte_ouvert_2.tscn" id="3_kao42"]
+[ext_resource type="PackedScene" uid="uid://dqpegtgb33tva" path="res://botte.tscn" id="4_t7ajn"]
 
 [node name="level_2_jeux" type="Node2D"]
+
+[node name="level_2" parent="." instance=ExtResource("2_pfgwc")]
+
+[node name="porte_ouvert_2" parent="." instance=ExtResource("3_kao42")]
+position = Vector2(368, -446)
+scale = Vector2(3.93923, 3.93923)
+
+[node name="botte" parent="." instance=ExtResource("4_t7ajn")]
+position = Vector2(184, -51)
+
+[node name="player" parent="." instance=ExtResource("1_xq47y")]
+position = Vector2(1, -55)
+scale = Vector2(0.72, 0.72)

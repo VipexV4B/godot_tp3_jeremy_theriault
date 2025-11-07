@@ -487,5 +487,5 @@ target_position = Vector2(16, 0)
 
 [node name="jump" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("11_nvl01")
-volume_db = 4.028
+volume_db = -10.487
 pitch_scale = 0.68
