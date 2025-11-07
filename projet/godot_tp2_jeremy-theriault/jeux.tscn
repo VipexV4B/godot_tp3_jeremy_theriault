@@ -1,19 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ra4j73r4y82j"]
+[gd_scene load_steps=9 format=3 uid="uid://ra4j73r4y82j"]
 
 [ext_resource type="Script" uid="uid://c6flo3dib6tbc" path="res://jeux.gd" id="1_aepv3"]
 [ext_resource type="PackedScene" uid="uid://boyw2vsaav3ly" path="res://player.tscn" id="1_nlqxw"]
 [ext_resource type="PackedScene" uid="uid://roo2lkwvidnr" path="res://map.tscn" id="2_gds4p"]
 [ext_resource type="PackedScene" uid="uid://cxf5rbgd6qk0g" path="res://potion.tscn" id="3_vq3ya"]
 [ext_resource type="AudioStream" uid="uid://bkwfqav3lh3hq" path="res://assets/audio/intro_music.mp3" id="5_pjyst"]
+[ext_resource type="PackedScene" uid="uid://behi30evgcudt" path="res://porte_ouvert.tscn" id="6_clhpe"]
+[ext_resource type="PackedScene" uid="uid://c5ppyu3kn7kjg" path="res://porte_cadenas.tscn" id="7_3ehqg"]
+[ext_resource type="PackedScene" uid="uid://d2cqi4l6jir75" path="res://clef.tscn" id="8_i8grr"]
 
 [node name="jeux" type="Node2D"]
 script = ExtResource("1_aepv3")
 
 [node name="map" parent="." instance=ExtResource("2_gds4p")]
-
-[node name="player" parent="." instance=ExtResource("1_nlqxw")]
-position = Vector2(21, 12)
-scale = Vector2(0.675, 0.675)
 
 [node name="Potion" parent="." instance=ExtResource("3_vq3ya")]
 position = Vector2(341, 33)
@@ -22,3 +21,19 @@ position = Vector2(341, 33)
 stream = ExtResource("5_pjyst")
 volume_db = -7.117
 pitch_scale = 0.65
+
+[node name="porte_ouvert" parent="." instance=ExtResource("6_clhpe")]
+position = Vector2(2062, 101)
+scale = Vector2(2.83999, 2.83999)
+
+[node name="porte_cadenas" parent="." instance=ExtResource("7_3ehqg")]
+position = Vector2(2062, 101)
+scale = Vector2(2.83999, 2.83999)
+
+[node name="clef" parent="." instance=ExtResource("8_i8grr")]
+position = Vector2(-205, 23)
+porte_path = NodePath("../porte_cadenas")
+
+[node name="player" parent="." instance=ExtResource("1_nlqxw")]
+position = Vector2(21, 12)
+scale = Vector2(0.675, 0.675)

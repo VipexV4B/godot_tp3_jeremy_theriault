@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=3 uid="uid://boyw2vsaav3ly"]
 
-[ext_resource type="Script" uid="uid://sf0hx8thy0m5" path="res://player.gd" id="1_n7ghd"]
+[ext_resource type="Script" uid="uid://cergfime1ef6h" path="res://player.gd" id="1_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://7mlxx3jq4jl3" path="res://assets/sprites/Samurai/Attack_1.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c8liu5o4cdov7" path="res://assets/sprites/Samurai/Attack_2.png" id="2_dw050"]
 [ext_resource type="Texture2D" uid="uid://b0dd1s8bk7y8j" path="res://assets/sprites/Samurai/Jump.png" id="2_i3pqv"]

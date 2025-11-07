@@ -3,11 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://dt3c5d1rfu0l4" path="res://assets/sprites/porte_cadenas.png" id="1_ctsyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc15b"]
+size = Vector2(5, 7)
 
 [node name="porte_cadenas" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_ctsyu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6.5)
 shape = SubResource("RectangleShape2D_oc15b")

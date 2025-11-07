@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxf5rbgd6qk0g"]
 
-[ext_resource type="Script" uid="uid://c5grwl3b538mi" path="res://potion.gd" id="1_bcips"]
-[ext_resource type="Texture2D" uid="uid://n8a63hyov02g" path="res://potion.png" id="2_174ht"]
+[ext_resource type="Script" uid="uid://dj50oy7v4o1ac" path="res://potion.gd" id="1_bcips"]
+[ext_resource type="Texture2D" uid="uid://dd2mo8wtv7c6b" path="res://potion.png" id="2_174ht"]
 [ext_resource type="AudioStream" uid="uid://cdjs2vousn07d" path="res://assets/audio/power_up.mp3" id="3_8parx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_174ht"]
