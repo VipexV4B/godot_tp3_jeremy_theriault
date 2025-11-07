@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ra4j73r4y82j"]
+[gd_scene load_steps=6 format=3 uid="uid://ra4j73r4y82j"]
 
-[ext_resource type="Script" uid="uid://6wvcmn6t3hmq" path="res://jeux.gd" id="1_aepv3"]
+[ext_resource type="Script" uid="uid://c6flo3dib6tbc" path="res://jeux.gd" id="1_aepv3"]
 [ext_resource type="PackedScene" uid="uid://boyw2vsaav3ly" path="res://player.tscn" id="1_nlqxw"]
 [ext_resource type="PackedScene" uid="uid://roo2lkwvidnr" path="res://map.tscn" id="2_gds4p"]
 [ext_resource type="PackedScene" uid="uid://cxf5rbgd6qk0g" path="res://potion.tscn" id="3_vq3ya"]
-[ext_resource type="PackedScene" uid="uid://c4dh7btmk1j4" path="res://menu_esc.tscn" id="5_aepv3"]
 [ext_resource type="AudioStream" uid="uid://bkwfqav3lh3hq" path="res://assets/audio/intro_music.mp3" id="5_pjyst"]
 
 [node name="jeux" type="Node2D"]
@@ -23,5 +22,3 @@ position = Vector2(341, 33)
 stream = ExtResource("5_pjyst")
 volume_db = -7.117
 pitch_scale = 0.65
-
-[node name="menu_esc" parent="." instance=ExtResource("5_aepv3")]

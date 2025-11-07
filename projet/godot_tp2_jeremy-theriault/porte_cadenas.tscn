@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5ppyu3kn7kjg"]
+
+[ext_resource type="Texture2D" uid="uid://dt3c5d1rfu0l4" path="res://assets/sprites/porte_cadenas.png" id="1_ctsyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oc15b"]
+
+[node name="porte_cadenas" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ctsyu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oc15b")

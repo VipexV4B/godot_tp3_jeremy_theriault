@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2cqi4l6jir75"]
+
+[ext_resource type="Script" uid="uid://ci0h2lfpwiyix" path="res://clef.gd" id="1_iwy5q"]
+[ext_resource type="Texture2D" uid="uid://bvnd6w45y852b" path="res://assets/sprites/clef.png" id="2_r0iuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlwcq"]
+
+[node name="clef" type="Area2D"]
+script = ExtResource("1_iwy5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_r0iuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rlwcq")
