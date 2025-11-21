@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var congrats_sound = $AudioStreamPlayer
+
 # --- Stats ---
 @export var speed := 60
 @export var max_health := 100
@@ -62,11 +64,14 @@ func _on_attack_hit(body):
 func take_damage(amount):
 	health -= amount
 	healthbar.value = health
-
+	$hurt.play()
 	print("Boss hit ! Dégâts :", amount, " | PV restants :", health)
 
 	if health <= 0:
 		die()
 
 func die():
+	$CollisionShape2D.disabled = true
+	congrats_sound.play()
+	await congrats_sound.finished
 	queue_free()

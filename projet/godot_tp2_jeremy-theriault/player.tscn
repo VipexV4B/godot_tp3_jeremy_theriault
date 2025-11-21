@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://boyw2vsaav3ly"]
+[gd_scene load_steps=71 format=3 uid="uid://boyw2vsaav3ly"]
 
 [ext_resource type="Script" uid="uid://cergfime1ef6h" path="res://player.gd" id="1_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://7mlxx3jq4jl3" path="res://assets/sprites/Samurai/Attack_1.png" id="1_onrkg"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://citutw8r2ws1" path="res://assets/sprites/Samurai/Walk.png" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dw4mfpllj11ty" path="res://assets/sprites/Samurai/Dead.png" id="5_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://dd02svqhm1g41" path="res://assets/sprites/Samurai/Protection.png" id="8_b26j0"]
+[ext_resource type="AudioStream" uid="uid://pbxaemq825k8" path="res://assets/audio/jump.wav" id="11_nvl01"]
+[ext_resource type="AudioStream" uid="uid://bekpxlns57d2e" path="res://assets/audio/looser.wav" id="12_ivps1"]
+[ext_resource type="AudioStream" uid="uid://bbmk0s6ljkdcf" path="res://assets/audio/slash.wav" id="13_urp6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
 atlas = ExtResource("3_sweqy")
@@ -487,6 +490,7 @@ position = Vector2(11, 0)
 target_position = Vector2(16, 0)
 
 [node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_nvl01")
 volume_db = -10.487
 pitch_scale = 0.68
 
@@ -495,3 +499,11 @@ pitch_scale = 0.68
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(45, 15)
 shape = SubResource("RectangleShape2D_n7ghd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ivps1")
+volume_db = -2.786
+
+[node name="slash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_urp6f")
+volume_db = -2.786

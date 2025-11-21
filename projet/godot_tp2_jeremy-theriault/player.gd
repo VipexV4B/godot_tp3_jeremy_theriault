@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var ray_left = $RayCastLeft
 @onready var ray_right = $RayCastRight
 @onready var jump_sound = $jump
+@onready var slash = $slash
 
 # --- Variables modifiables ---
 @export var speed := 200.0
@@ -69,10 +70,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_force
-			jump_sound.play()
+			jump_sound.play(0.5)
 		elif hit_left or hit_right:
 			velocity.y = wall_jump_force
-			jump_sound.play()
+			jump_sound.play(0.5)
 
 			if hit_right:
 				velocity.x = -wall_pushback
@@ -130,6 +131,7 @@ func _process(delta):
 		anim.show()
 		idle_anim.hide()
 		anim.play("attack_1")
+		slash.play()
 
 		# active l'area pendant l'attaque
 		$AttackArea.monitoring = true
@@ -182,6 +184,10 @@ func take_damage(amount):
 	if health <= 0:
 		die()
 
+@onready var looser = $AudioStreamPlayer
 func die():
+	looser.play()
+	await looser.finished
 	print("Le joueur est mort")
-	queue_free() # ou respawn si tu veux
+	var menu = load("res://menu_principal.tscn")
+	get_tree().change_scene_to_packed(menu)

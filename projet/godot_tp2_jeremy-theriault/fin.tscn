@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dgqwrechynj48"]
+[gd_scene load_steps=3 format=3 uid="uid://dgqwrechynj48"]
+
+[ext_resource type="Script" uid="uid://dlob5bipoleo" path="res://fin.gd" id="1_kp3xx"]
+[ext_resource type="AudioStream" uid="uid://c17yh3tly5yhk" path="res://assets/audio/congrats.wav" id="2_igkyy"]
 
 [node name="fin" type="Control"]
 layout_mode = 3
@@ -7,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kp3xx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -31,3 +35,6 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Tutoriel fini!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_igkyy")
