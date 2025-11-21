@@ -19,6 +19,10 @@ extends CharacterBody2D
 var wall_jump_lock_timer := 0.0
 var attacking := false  # <-- bloque le mouvement pendant l'attaque
 var has_sword := false
+@export var attack_damage := 20
+var is_attacking := false
+@onready var attack_area = $AttackArea
+
 
 
 
@@ -28,6 +32,13 @@ func _ready():
 
 	# Quand une animation finit
 	anim.animation_finished.connect(_on_anim_finished)
+	
+	health = max_health
+	if healthbar:
+		healthbar.max_value = max_health
+		healthbar.value = health
+	
+	$AttackArea.body_entered.connect(_on_attack_area_hit)
 
 
 func _physics_process(delta):
@@ -85,19 +96,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 	# -----------------------------------------
-	#                ATTAQUE
-	# -----------------------------------------
-	if Input.is_action_just_pressed("attack_1") and not attacking and has_sword:
-		attacking = true
-		velocity.x = 0
-		anim.show()
-		idle_anim.hide()
-		anim.play("attack_1")
-		return
-
-
-
-	# -----------------------------------------
 	#                ANIMATIONS
 	# -----------------------------------------
 	if not is_on_floor():  # jump
@@ -120,6 +118,45 @@ func _physics_process(delta):
 		idle_anim.hide()
 		anim.play("walk")
 
+	# -----------------------------------------
+	#                ATTAQUE
+	# -----------------------------------------
+func _process(delta):
+
+	# Ton attaque + on active la hitbox
+	if Input.is_action_just_pressed("attack_1") and not attacking and has_sword:
+		attacking = true
+		velocity.x = 0  
+		anim.show()
+		idle_anim.hide()
+		anim.play("attack_1")
+
+		# active l'area pendant l'attaque
+		$AttackArea.monitoring = true
+		$AttackArea.monitorable = true
+
+		await anim.animation_finished
+
+		# désactive après
+		$AttackArea.monitoring = false
+		$AttackArea.monitorable = false
+
+		attacking = false
+		return
+
+		
+func _on_attack_area_hit(body):
+	if not attacking: 
+		return  # empêche les hits quand tu n'attaques pas
+
+	if body.is_in_group("boss"):
+		if body.has_method("take_damage"):
+			body.take_damage(attack_damage)
+			print("Boss touché !")
+
+
+
+
 
 # ------------------------------------------------
 #         Callback quand une animation finit
@@ -127,3 +164,24 @@ func _physics_process(delta):
 func _on_anim_finished():
 	if anim.animation == "attack_1":
 		attacking = false
+		
+		
+@export var max_health := 100
+var health := 100
+
+@onready var healthbar = $HealthBar
+
+func take_damage(amount):
+	health -= amount
+
+	if healthbar:
+		healthbar.value = health
+
+	print("Dégâts reçus :", amount, " | PV restants :", health)
+
+	if health <= 0:
+		die()
+
+func die():
+	print("Le joueur est mort")
+	queue_free() # ou respawn si tu veux

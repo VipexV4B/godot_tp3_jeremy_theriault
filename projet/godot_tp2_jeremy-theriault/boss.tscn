@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://37foabuxusgl"]
+
+[ext_resource type="Script" uid="uid://b7g7bcxre65h7" path="res://boss.gd" id="1_0bnu1"]
+[ext_resource type="Texture2D" uid="uid://bcga07la571xu" path="res://assets/sprites/sword.png" id="2_6xxrv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0bnu1"]
+radius = 23.0
+height = 108.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xxrv"]
+size = Vector2(155, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skx2t"]
+size = Vector2(43.0061, 20)
+
+[node name="Boss" type="CharacterBody2D" groups=["boss"]]
+script = ExtResource("1_0bnu1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = -0.703489
+scale = Vector2(2.84028, 2.84028)
+texture = ExtResource("2_6xxrv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0bnu1")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+clip_contents = true
+offset_left = -84.0
+offset_top = -84.0
+offset_right = -80.0
+offset_bottom = -57.0
+rotation = -0.00159817
+scale = Vector2(43.8546, 0.853306)
+fill_mode = 1
+show_percentage = false
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-67.5, 0)
+shape = SubResource("RectangleShape2D_6xxrv")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-31.503, -0.0720184)
+rotation = 0.00123102
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_skx2t")

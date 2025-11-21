@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqa675e0x6qyb"]
+[gd_scene load_steps=7 format=3 uid="uid://bqa675e0x6qyb"]
 
 [ext_resource type="PackedScene" uid="uid://boyw2vsaav3ly" path="res://player.tscn" id="1_xq47y"]
 [ext_resource type="PackedScene" uid="uid://dy734se5qq2hs" path="res://level_2.tscn" id="2_pfgwc"]
 [ext_resource type="PackedScene" uid="uid://c6cbjltrdia6h" path="res://porte_ouvert_2.tscn" id="3_kao42"]
 [ext_resource type="PackedScene" uid="uid://dqpegtgb33tva" path="res://botte.tscn" id="4_t7ajn"]
 [ext_resource type="PackedScene" uid="uid://dfsdo3hjeajli" path="res://sword.tscn" id="5_05n5a"]
+[ext_resource type="PackedScene" uid="uid://37foabuxusgl" path="res://boss.tscn" id="6_6d634"]
 
 [node name="level_2_jeux" type="Node2D"]
 
@@ -24,3 +25,7 @@ scale = Vector2(0.72, 0.72)
 
 [node name="sword" parent="." instance=ExtResource("5_05n5a")]
 position = Vector2(-493, -422)
+
+[node name="Boss" parent="." instance=ExtResource("6_6d634")]
+position = Vector2(538, -55)
+rotation = 0.00365496
