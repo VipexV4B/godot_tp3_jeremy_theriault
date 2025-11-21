@@ -1,9 +1,127 @@
-[gd_scene load_steps=8 format=3 uid="uid://37foabuxusgl"]
+[gd_scene load_steps=25 format=3 uid="uid://37foabuxusgl"]
 
 [ext_resource type="Script" uid="uid://b7g7bcxre65h7" path="res://boss.gd" id="1_0bnu1"]
-[ext_resource type="Texture2D" uid="uid://bcga07la571xu" path="res://assets/sprites/sword.png" id="2_6xxrv"]
+[ext_resource type="Texture2D" uid="uid://cj4sh5yw84m5" path="res://assets/sprites/Samurai/Idle.png" id="2_lnbgr"]
+[ext_resource type="Texture2D" uid="uid://c8liu5o4cdov7" path="res://assets/sprites/Samurai/Attack_2.png" id="2_o1i15"]
 [ext_resource type="AudioStream" uid="uid://c17yh3tly5yhk" path="res://assets/audio/congrats.wav" id="3_skx2t"]
 [ext_resource type="AudioStream" uid="uid://cxbopyv6md1dv" path="res://assets/audio/hurt.wav" id="4_lnbgr"]
+[ext_resource type="Texture2D" uid="uid://ctckwpn73pary" path="res://assets/sprites/Samurai/Hurt.png" id="4_we8h1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etj48"]
+atlas = ExtResource("2_o1i15")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3lj5"]
+atlas = ExtResource("2_o1i15")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s1j2"]
+atlas = ExtResource("2_o1i15")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km2bi"]
+atlas = ExtResource("2_o1i15")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0duv"]
+atlas = ExtResource("2_o1i15")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1i15"]
+atlas = ExtResource("2_lnbgr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we8h1"]
+atlas = ExtResource("2_lnbgr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvofc"]
+atlas = ExtResource("2_lnbgr")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef0k6"]
+atlas = ExtResource("2_lnbgr")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry61v"]
+atlas = ExtResource("2_lnbgr")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kles1"]
+atlas = ExtResource("2_lnbgr")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc4na"]
+atlas = ExtResource("4_we8h1")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8arul"]
+atlas = ExtResource("4_we8h1")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d2wm"]
+atlas = ExtResource("4_we8h1")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_etj48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etj48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3lj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s1j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km2bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0duv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1i15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we8h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvofc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef0k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry61v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kles1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc4na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8arul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d2wm")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0bnu1"]
 radius = 23.0
@@ -18,16 +136,19 @@ size = Vector2(43.0061, 20)
 [node name="Boss" type="CharacterBody2D" groups=["boss"]]
 script = ExtResource("1_0bnu1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-rotation = -0.703489
-scale = Vector2(2.84028, 2.84028)
-texture = ExtResource("2_6xxrv")
+position = Vector2(-33, -35)
+rotation = -0.0104308
+scale = Vector2(-1.14965, 1.40172)
+sprite_frames = SubResource("SpriteFrames_etj48")
+animation = &"hurt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0bnu1")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 clip_contents = true
 offset_left = -84.0
 offset_top = -84.0

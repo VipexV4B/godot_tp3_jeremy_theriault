@@ -16,8 +16,11 @@ var attack_timer := 0.0
 @onready var detection = $DetectionArea
 @onready var attack_area = $AttackArea
 @onready var healthbar = $HealthBar
+@onready var idle = $Sprite2D
+
 
 func _ready():
+	idle.play("default")
 	health = max_health
 	healthbar.max_value = max_health
 	healthbar.value = health
@@ -44,6 +47,7 @@ func _follow_player(delta):
 
 func _attack():
 	is_attacking = true
+	idle.play("attack")
 	# ici tu peux jouer une animation d'attaque si tu veux
 	await get_tree().create_timer(0.5).timeout
 	is_attacking = false
@@ -65,6 +69,7 @@ func take_damage(amount):
 	health -= amount
 	healthbar.value = health
 	$hurt.play()
+	idle.play("hurt")
 	print("Boss hit ! Dégâts :", amount, " | PV restants :", health)
 
 	if health <= 0:

@@ -187,6 +187,7 @@ func take_damage(amount):
 @onready var looser = $AudioStreamPlayer
 func die():
 	looser.play()
+	anim.play("dead")
 	await looser.finished
 	print("Le joueur est mort")
 	var menu = load("res://menu_principal.tscn")

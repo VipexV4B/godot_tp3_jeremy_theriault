@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://boyw2vsaav3ly"]
+[gd_scene load_steps=72 format=3 uid="uid://boyw2vsaav3ly"]
 
 [ext_resource type="Script" uid="uid://cergfime1ef6h" path="res://player.gd" id="1_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://7mlxx3jq4jl3" path="res://assets/sprites/Samurai/Attack_1.png" id="1_onrkg"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://pbxaemq825k8" path="res://assets/audio/jump.wav" id="11_nvl01"]
 [ext_resource type="AudioStream" uid="uid://bekpxlns57d2e" path="res://assets/audio/looser.wav" id="12_ivps1"]
 [ext_resource type="AudioStream" uid="uid://bbmk0s6ljkdcf" path="res://assets/audio/slash.wav" id="13_urp6f"]
+[ext_resource type="Script" uid="uid://qeesnlt274lm" path="res://health_bar.gd" id="14_bwjto"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
 atlas = ExtResource("3_sweqy")
@@ -348,7 +349,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dead",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [],
 "loop": true,
@@ -469,9 +470,8 @@ offset = Vector2(35.855, -10.735)
 [node name="Sprite_player" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -11)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"attack_1"
-frame = 3
-frame_progress = 1.0
+animation = &"dead"
+frame_progress = 0.646738
 
 [node name="Collision_player" type="CollisionShape2D" parent="."]
 position = Vector2(6, 17)
@@ -507,3 +507,12 @@ volume_db = -2.786
 [node name="slash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_urp6f")
 volume_db = -2.786
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -30.0
+offset_top = -37.0
+offset_right = 10.0
+offset_bottom = 3.0
+scale = Vector2(1.90329, 0.368144)
+show_percentage = false
+script = ExtResource("14_bwjto")
