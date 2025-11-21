@@ -2,6 +2,6 @@
 
 ## Touche
 - marche coté droit: D, -­­­>
-- marche coté gauche: D, <-­­­
+- marche coté gauche: A, <-­­­
 - Saut: W, espace, flèche du haut
 - Attaque: 1
