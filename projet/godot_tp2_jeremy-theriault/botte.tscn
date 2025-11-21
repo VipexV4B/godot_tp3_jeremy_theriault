@@ -1,15 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqpegtgb33tva"]
 
 [ext_resource type="Script" uid="uid://umewwsxtof5r" path="res://botte.gd" id="1_2hpj7"]
-[ext_resource type="Texture2D" uid="uid://dd2mo8wtv7c6b" path="res://potion.png" id="2_bwxtu"]
+[ext_resource type="Texture2D" uid="uid://c533xsdyi5mfm" path="res://assets/sprites/boot.png" id="2_bwxtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwxtu"]
+size = Vector2(26, 26)
 
 [node name="botte" type="Area2D"]
 script = ExtResource("1_2hpj7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_bwxtu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_bwxtu")

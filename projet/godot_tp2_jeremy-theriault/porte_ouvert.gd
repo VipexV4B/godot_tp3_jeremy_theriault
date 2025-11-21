@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var next_level_path := "res://level_2_jeux.tscn" # chemin vers ton niveau 2
+@export var next_level_path := "res://passer_level_2.tscn" # chemin vers ton niveau 2
 
 func _ready():
 	body_entered.connect(_on_body_entered)

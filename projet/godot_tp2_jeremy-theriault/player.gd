@@ -1,91 +1,129 @@
 extends CharacterBody2D
 
 @onready var anim = $Sprite_player
-@onready var animation = $sprite_idle
+@onready var idle_anim = $sprite_idle
 @onready var ray_left = $RayCastLeft
 @onready var ray_right = $RayCastRight
 @onready var jump_sound = $jump
 
-# --- Variables modifiables par le jeu ---
-@export var speed = 200.0          # vitesse normale (modifiable par un objet)
-@export var speed_run = 300.0      # vitesse quand on court
-@export var jump_force = -330.0
-@export var gravity = 900.0
-@export var wall_jump_force = -300.0
-@export var wall_pushback = 420.0   # augmente si tu veux un recul plus visible
-@export var wall_jump_lock = 0.18   # durée pendant laquelle on bloque le contrôle horizontal
+# --- Variables modifiables ---
+@export var speed := 200.0
+@export var speed_run := 300.0
+@export var jump_force := -330.0
+@export var gravity := 900.0
+@export var wall_jump_force := -300.0
+@export var wall_pushback := 420.0
+@export var wall_jump_lock := 0.18
 
-# --- Variables internes ---
+# --- États internes ---
 var wall_jump_lock_timer := 0.0
+var attacking := false  # <-- bloque le mouvement pendant l'attaque
+var has_sword := false
 
-func _ready() -> void:
-	# activer les raycasts
+
+
+func _ready():
 	ray_left.enabled = true
 	ray_right.enabled = true
 
-func _physics_process(delta: float) -> void:
-	# gravité
+	# Quand une animation finit
+	anim.animation_finished.connect(_on_anim_finished)
+
+
+func _physics_process(delta):
+	# --- SI ATTAQUE EN COURS → TOUT BLOQUER ---
+	if attacking:
+		velocity.x = 0
+		move_and_slide()
+		return
+
+	# --- GRAVITÉ ---
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# input horizontal
-	var direction := 0.0
-	if Input.is_action_pressed("move_right"):
-		direction += 1
+	# --- INPUT HORIZONTAL ---
+	var direction := Input.get_axis("move_left", "move_right")
+
+	# flip
+	if direction > 0:
 		anim.flip_h = false
-	if Input.is_action_pressed("move_left"):
-		direction -= 1
+	elif direction < 0:
 		anim.flip_h = true
 
-	# détection mur via raycasts
-	var hit_left: bool = ray_left.is_colliding()
-	var hit_right: bool = ray_right.is_colliding()
+	# --- DÉTECTION MURS ---
+	var hit_left = ray_left.is_colliding()
+	var hit_right = ray_right.is_colliding()
 
-	# saut normal ou wall jump
+	# --- SAUT ---
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_force
 			jump_sound.play()
-			jump_sound.seek(1.0)
-		elif (hit_left or hit_right) and not is_on_floor():
-			jump_sound.play()
-			jump_sound.seek(1.0)
+		elif hit_left or hit_right:
 			velocity.y = wall_jump_force
+			jump_sound.play()
+
 			if hit_right:
 				velocity.x = -wall_pushback
 			else:
 				velocity.x = wall_pushback
+
 			wall_jump_lock_timer = wall_jump_lock
-			
-	# Si timer actif, on ne réécrit pas velocity.x (laisse le pushback agir)
-	if wall_jump_lock_timer > 0.0:
+
+	# --- WALL LOCK ---
+	if wall_jump_lock_timer > 0:
 		wall_jump_lock_timer -= delta
 	else:
-		# contrôle horizontal normal
-		if direction == 0:
-			velocity.x = 0
-		elif Input.is_action_pressed("run"):
-			velocity.x = direction * speed_run
+		if direction != 0:
+			if Input.is_action_pressed("run"):
+				velocity.x = direction * speed_run
+			else:
+				velocity.x = direction * speed
 		else:
-			velocity.x = direction * speed
+			velocity.x = 0
 
 	move_and_slide()
 
-	# animations
-	if not is_on_floor():
+	# -----------------------------------------
+	#                ATTAQUE
+	# -----------------------------------------
+	if Input.is_action_just_pressed("attack_1") and not attacking and has_sword:
+		attacking = true
+		velocity.x = 0
 		anim.show()
-		animation.hide()
-		if anim.animation != "jump":
-			anim.play("jump")
-	elif direction == 0 and is_on_floor():
+		idle_anim.hide()
+		anim.play("attack_1")
+		return
+
+
+
+	# -----------------------------------------
+	#                ANIMATIONS
+	# -----------------------------------------
+	if not is_on_floor():  # jump
+		anim.show()
+		idle_anim.hide()
+		anim.play("jump")
+
+	elif direction == 0:  # idle
+		idle_anim.show()
 		anim.hide()
-		animation.show()
-		animation.play("idle")
-	elif Input.is_action_pressed("run"):
+		idle_anim.play("idle")
+
+	elif Input.is_action_pressed("run"):  # run
 		anim.show()
-		animation.hide()
+		idle_anim.hide()
 		anim.play("run")
-	else:
+
+	else:  # walk
 		anim.show()
-		animation.hide()
+		idle_anim.hide()
 		anim.play("walk")
+
+
+# ------------------------------------------------
+#         Callback quand une animation finit
+# ------------------------------------------------
+func _on_anim_finished():
+	if anim.animation == "attack_1":
+		attacking = false
